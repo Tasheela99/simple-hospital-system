@@ -1,0 +1,23 @@
+<div class="corousel">
+  <owl-carousel-o [options]="customOptions" *ngIf="services.length > 0" [options]="customOptions">
+    <ng-container *ngFor="let item of services">
+      <ng-template carouselSlide>
+        <mat-card class="example-card border border-dark">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+              <img src="{{item.serviceImage}}" alt="">
+            </div>
+            <mat-card-title>{{ item.titleText }}</mat-card-title>
+            <mat-card-subtitle>{{ item.subTitleText }}</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{item.mainImage}}" alt="" height="200">
+          <mat-card-content>
+            <p>
+              {{ item.description }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</div>

@@ -1,0 +1,24 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+.image{
+  background-image: url("https://img.freepik.com/free-vector/illustrated-diverse-casual-people_53876-37261.jpg?w=826&t=st=1703318448~exp=1703319048~hmac=a971398e3f8a150478bcee32fa2563ae3fa47a404721eacf9ddbf683c7814777");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1{
+    font-size: 40px;
+    font-weight: 900;
+  }
+}

@@ -1,0 +1,128 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+          (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span routerLink="/admin/dashboard" style="cursor: pointer">Hospital Management System</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav " mode="side">
+    <div class="d-flex align-items-start justify-content-start flex-column">
+      <button mat-button class="example-icon" aria-label="Example icon-button with share icon"
+              routerLink="/hospital/doctor">
+        Doctors
+      </button>
+      <button mat-button class="example-icon" aria-label="Example icon-button with share icon"
+              routerLink="/hospital/patient">
+        Patients
+      </button>
+      <button mat-button class="example-icon" aria-label="Example icon-button with share icon"
+              routerLink="/hospital/inventory">
+        Medicine Inventory
+      </button>
+      <button mat-button class="example-icon" aria-label="Example icon-button with share icon"
+              routerLink="/hospital/holder">
+        Holder
+      </button>
+      <button mat-button class="example-icon" aria-label="Example icon-button with share icon"
+              routerLink="/hospital/medicine">
+        Medicine
+      </button>
+    </div>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-lg-3 col-md-6" *ngFor="let item of cards">
+          <mat-card class="example-card border m-2 d-flex flex-row align-items-center justify-content-between px-2">
+            <div class="left">
+              <mat-card-header>
+                <mat-card-title>{{ item.name }}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <h1 class="item-count">{{ item.countIs }}</h1>
+              </mat-card-content>
+            </div>
+            <div class="right border d-flex align-items-center justify-content-center" style="width: 50px; height: 50px">
+              <mat-icon>{{item.iconName}}</mat-icon>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+      <div class="py-4"></div>
+
+      <div class="py-4"></div>
+
+      <div class="row py-2">
+        <div class="col-12 col-lg-6">
+          <div style="text-align:center; width: 100%">
+            <apx-chart
+              [series]="chartOptions.series"
+              [chart]="chartOptions.chart"
+              [xaxis]="chartOptions.xaxis"
+              [title]="chartOptions.title"
+            ></apx-chart>
+          </div>
+        </div>
+        <div class="col-12. col-lg-6">
+          <div class="inner px-2">
+            <div class="col-8 border w-100">
+              <div class="table-container col-12 w-100 border" style="max-height: 500px; overflow-y: scroll; width: 100%">
+                <table mat-table [dataSource]="users" class="mat-elevation-z8 w-100">
+
+                  <ng-container matColumnDef="index">
+                    <th mat-header-cell *matHeaderCellDef> No.</th>
+                    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+                  </ng-container>
+
+                  <!-- Name Column -->
+                  <ng-container matColumnDef="userid">
+                    <th mat-header-cell *matHeaderCellDef> UserId</th>
+                    <td mat-cell *matCellDef="let element"> {{ element.propertyId }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef> Email</th>
+                    <td mat-cell *matCellDef="let element"> {{ element.email }}</td>
+                  </ng-container>
+
+                  <!-- Weight Column -->
+                  <ng-container matColumnDef="firstname">
+                    <th mat-header-cell *matHeaderCellDef> FirstName</th>
+                    <td mat-cell *matCellDef="let element"> {{ element.firstName }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="lastname">
+                    <th mat-header-cell *matHeaderCellDef> LastName</th>
+                    <td mat-cell *matCellDef="let element"> {{ element.lastName }}</td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row py-2">
+          <div class="col-12">
+            <app-dashboard-carousel></app-dashboard-carousel>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</mat-drawer-container>

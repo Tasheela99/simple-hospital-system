@@ -1,0 +1,43 @@
+<div class="login-outer">
+  <div class="login-inner">
+    <div class="container">
+      <div class="row inner-items">
+        <div class="col-12 col-lg-7 left">
+          <img src="https://img.freepik.com/free-vector/security-concept-illustration_114360-497.jpg?w=826&t=st=1703260813~exp=1703261413~hmac=3012a0b37b07937a834213c165ede26d90f60c0d7586538610e292135316f451" alt="login_image" class="login-image">
+        </div>
+        <div class="col-12 col-lg-5 right">
+          <div class="right-inner">
+            <h1 class="title">Login</h1>
+            <h4 class="sub-title">Hospital Management System</h4>
+            <div class="row">
+              <form [formGroup]="form" (ngSubmit)="login()">
+                <div class="col-12">
+                  <mat-form-field appearance="outline" style="width: 100%">
+                    <mat-label>Email</mat-label>
+                    <input formControlName="email" matInput placeholder="Email">
+
+                  </mat-form-field>
+                </div>
+                <div class="col-12">
+                  <mat-form-field appearance="outline" style="width: 100%">
+                    <mat-label>Password</mat-label>
+                    <input formControlName="password" matInput placeholder="Password">
+
+                  </mat-form-field>
+                </div>
+                <div class="col-12">
+                  <button mat-raised-button color="primary" type="submit" style="width: 100%">Login</button>
+                </div>
+                <div class="col-12 my-2 text-center">OR</div>
+                <div class="col-12">
+                  <button mat-raised-button color="warn" style="width: 100%" routerLink="/security/register">Register</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

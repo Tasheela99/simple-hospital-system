@@ -1,0 +1,24 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+.image{
+  background-image: url("https://img.freepik.com/free-vector/collection-doctors-with-female-patients_23-2147798644.jpg?w=826&t=st=1703317638~exp=1703318238~hmac=74e7ff7ca89a45abf43f7d0edc1a3174af046da53d1af4038703c3be208dc89c");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1{
+    font-size: 40px;
+    font-weight: 900;
+  }
+}

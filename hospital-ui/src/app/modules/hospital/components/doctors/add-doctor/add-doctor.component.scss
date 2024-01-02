@@ -1,0 +1,24 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+.image{
+  background-image: url("https://img.freepik.com/free-vector/health-professional-team_52683-36023.jpg?w=1380&t=st=1703314382~exp=1703314982~hmac=a6c2057f24f656aa2b58d1ea05a2a9d80ba077bc9c72a3a5d4069a22c93741a7");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  h1{
+    font-size: 40px;
+    font-weight: 900;
+  }
+}

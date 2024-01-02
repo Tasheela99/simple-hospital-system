@@ -1,0 +1,67 @@
+<div class="outer">
+  <div class="inner">
+    <div class="image" style="width: 100%; height: 500px">
+      <h1>Manage Inventory Holders</h1>
+    </div>
+    <div class="form pt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <form class="example-form" [formGroup]="holderForm" (ngSubmit)="createHolder()">
+              <div class="row">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Name</mat-label>
+                  <input type="text" formControlName="name" matInput placeholder="Ex. pat@example.com">
+                </mat-form-field>
+                <div class="col-6">
+                  <button mat-raised-button class="w-100" color="primary" type="submit">Add Inventory Holder</button>
+                </div>
+                <div class="col-6">
+                  <button mat-raised-button class="w-100" color="warn" type="reset">Cancel</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <hr>
+        <div class="col-12">
+          <table mat-table [dataSource]="holders" class="mat-elevation-z8">
+            <ng-container matColumnDef="index">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef> ID </th>
+              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> Actions </th>
+              <td mat-cell *matCellDef="let element">
+
+                <!-- Delete Button -->
+                <button mat-icon-button (click)="deleteHolder(element.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
