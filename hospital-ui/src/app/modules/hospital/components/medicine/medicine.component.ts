@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MedicineService} from "../../../shared/services/medicine.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {InventoryService} from "../../../shared/services/inventory.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-medicine',
@@ -19,19 +20,19 @@ export class MedicineComponent implements OnInit {
 
   medicines: object[] = [];
 
-  constructor(private fb: FormBuilder, private medicineService: MedicineService, private inventoryService: InventoryService) {
+  constructor(private medicineService: MedicineService, private inventoryService: InventoryService, private snackBar:MatSnackBar) {
   }
 
-  inventories: object[] = [];
+  inventories: String[] = [];
 
   getAllInventories() {
-    this.inventoryService.getAllInventories().subscribe(
+    this.inventoryService.getAllMedicalInventoryIds().subscribe(
       (response) => {
         this.inventories = response.data;
-        console.log(this.inventories)
+        console.log(this.inventories);
       },
       (error) => {
-        console.error('Error getting all Inventories', error);
+        console.error('Error fetching medicine IDs:', error);
       }
     );
   }
@@ -55,6 +56,7 @@ export class MedicineComponent implements OnInit {
       )
       .subscribe(
         (response) => {
+          this.snackBar.open("New Medicine Data Created SuccessFully",'close')
           console.log('Medicine created successfully:', response);
         },
         (error) => {
@@ -79,6 +81,8 @@ export class MedicineComponent implements OnInit {
     this.medicineService.deleteMedicine(id).subscribe(
       (response) => {
         console.log('Medicine deleted successfully:', response);
+        this.snackBar.open("New Medicine Data Deleted SuccessFully",'close')
+
       },
       (error) => {
         console.error('Error deleting Medicine:', error);

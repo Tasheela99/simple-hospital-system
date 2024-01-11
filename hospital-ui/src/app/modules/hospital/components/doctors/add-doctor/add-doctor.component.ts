@@ -6,6 +6,7 @@ import {response} from "express";
 import {MatTableDataSource} from "@angular/material/table";
 import {RequestDoctorDto} from "../../../../shared/dtos/request-doctor";
 import {finalize} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-add-doctor',
@@ -22,12 +23,14 @@ export class AddDoctorComponent implements OnInit{
 
   isUpdating = false;
 
+  doctorSpecialities: string[] = ['Cardiology', 'Dermatology', 'Orthopedics', 'Neurology', 'Pediatrics', 'Ophthalmology', 'Oncology'];
+
 
   ngOnInit() {
    this.getAllDoctors()
   }
 
-  constructor(private doctorService: DoctorService, private cdr: ChangeDetectorRef) {}
+  constructor(private doctorService: DoctorService, private cdr: ChangeDetectorRef, private snackBar:MatSnackBar) {}
 
   doctorForm= new FormGroup({
     name:new FormControl("",Validators.required),
@@ -44,6 +47,7 @@ export class AddDoctorComponent implements OnInit{
      this.doctorForm.get('mobile')?.value,
      this.doctorForm.get('speciality')?.value,
    ).subscribe(response=>{
+     this.snackBar.open("Doctor Saved SuccessFully",'close');
      console.log(response)
    });
   }
@@ -75,6 +79,7 @@ export class AddDoctorComponent implements OnInit{
   deleteDoctor(doctorId: string): void {
     this.doctorService.deleteDoctor(doctorId).subscribe(
       (response) => {
+        this.snackBar.open("Doctor Deleted SuccessFully",'close');
         console.log('Doctor deleted successfully:', response);
       },
       (error) => {

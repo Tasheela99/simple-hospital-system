@@ -28,4 +28,28 @@ export class AuthService {
     }))
   }
 
+  isLoggedIn() {
+    const token = localStorage.getItem('token');
+
+    // Check if token is null or undefined
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const payload = atob(token.split('.')[1]);
+      const parsedPayload = JSON.parse(payload);
+      if (parsedPayload && parsedPayload.exp) {
+        return parsedPayload.exp > Date.now() / 1000;
+      } else {
+        console.error('Token payload is missing expiration information.');
+        return false;
+      }
+    } catch (error) {
+      console.error('Error parsing token payload:', error);
+      return false;
+    }
+  }
+
+
 }

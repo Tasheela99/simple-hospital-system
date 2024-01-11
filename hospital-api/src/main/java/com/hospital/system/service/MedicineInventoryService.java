@@ -13,4 +13,6 @@ public interface MedicineInventoryService {
     boolean deleteMedicalInventory(String id);
 
     List<ResponseMedicineInventoryDto> getAllMedicalInventory();
+
+    List<String> getAllMedicalInventoryIds();
 }

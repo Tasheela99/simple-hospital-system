@@ -15,4 +15,6 @@ public interface PatientService {
     List<PatientDto> getAllPatients();
 
     long count();
+
+    PatientDto getPatientById(String patientId);
 }

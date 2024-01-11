@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {InventoryService} from "../../../../shared/services/inventory.service";
+import {HolderService} from "../../../../shared/services/holder.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-medicine-inventory',
@@ -10,17 +12,28 @@ import {InventoryService} from "../../../../shared/services/inventory.service";
 export class MedicineInventoryComponent implements OnInit{
   ngOnInit() {
     this.getAllInventories();
+    this.getAllHolderIds();
   }
 
   displayedColumns: string[] = ['index','holderId', 'name', 'qty','unitPrice','manufacture','expire','actions'];
 
   inventories: object[] = [];
 
-  selectedDoctor: any;
+  holders: String[] = [];
 
-  isUpdating = false;
+  constructor(private inventoryService: InventoryService, private holderService:HolderService, private snackBar:MatSnackBar) {
+  }
 
-  constructor(private inventoryService: InventoryService) {
+  getAllHolderIds() {
+    this.holderService.getAllMedicalHolderInventoryIds().subscribe(
+      (response) => {
+        this.holders = response.data;
+        console.log(this.holders);
+      },
+      (error) => {
+        console.error('Error fetching medicine IDs:', error);
+      }
+    );
   }
 
   inventoryForm = new FormGroup({
@@ -45,6 +58,7 @@ export class MedicineInventoryComponent implements OnInit{
       )
       .subscribe(
         (response) => {
+          this.snackBar.open("Medicine Inventory Data Created SuccessFully",'close')
           console.log('Inventory created successfully:', response);
         },
         (error) => {
@@ -69,6 +83,8 @@ export class MedicineInventoryComponent implements OnInit{
     this.inventoryService.deleteInventory(id).subscribe(
       (response) => {
         console.log('Doctor deleted successfully:', response);
+        this.snackBar.open("Medicine Inventory Deleted SuccessFully",'close')
+
       },
       (error) => {
         console.error('Error deleting doctor:', error);

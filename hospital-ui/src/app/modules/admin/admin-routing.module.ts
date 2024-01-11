@@ -5,6 +5,8 @@ import {AdminVerificationComponent} from "./admin-verification/admin-verificatio
 import {AllAdminsComponent} from "./all-admins/all-admins.component";
 import {NewDoctorComponent} from "./new-doctor/new-doctor.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {AuthGuard} from "../shared/guards/auth.guard";
+
 
 const routes: Routes = [{ path: '', component: AdminComponent,children:[
     {path:'admin-verification',component:AdminVerificationComponent},

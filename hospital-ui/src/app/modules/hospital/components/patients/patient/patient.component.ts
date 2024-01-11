@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {PatientService} from "../../../../shared/services/patient.service";
 import {finalize} from "rxjs";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-patient',
@@ -21,7 +22,7 @@ export class PatientComponent implements OnInit{
 
   isUpdating = false;
 
-  constructor(private patientService: PatientService) {
+  constructor(private patientService: PatientService, private snackBar:MatSnackBar) {
   }
 
   patientForm = new FormGroup({
@@ -39,6 +40,7 @@ export class PatientComponent implements OnInit{
       this.patientForm.get('age')?.value,
       this.patientForm.get('mobile')?.value,
     ).subscribe(response => {
+      this.snackBar.open("Patient Created SuccessFully",'close')
       console.log(response)
     });
   }
@@ -70,6 +72,8 @@ export class PatientComponent implements OnInit{
     this.patientService.deletePatient(patientId).subscribe(
       (response) => {
         console.log('Patient deleted successfully:', response);
+        this.snackBar.open("Patient Deleted SuccessFully",'close')
+
       },
       (error) => {
         console.error('Error deleting patient:', error);

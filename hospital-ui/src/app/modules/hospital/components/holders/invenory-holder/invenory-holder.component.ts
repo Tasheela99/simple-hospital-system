@@ -1,6 +1,7 @@
 import {Component, OnInit, signal} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HolderService} from "../../../../shared/services/holder.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-invenory-holder',
@@ -16,7 +17,7 @@ export class InvenoryHolderComponent implements OnInit{
 
   holders: object[] = [];
 
-  constructor(private holderService: HolderService) {
+  constructor(private holderService: HolderService, private snackbar:MatSnackBar) {
   }
 
   holderForm = new FormGroup({
@@ -27,6 +28,7 @@ export class InvenoryHolderComponent implements OnInit{
     this.holderService.createHolder(
       this.holderForm.get('name')?.value,
     ).subscribe(response=>{
+      this.snackbar.open("Inventory Holder Created SuccessFully",'close')
       console.log(response)
     });
   }
@@ -48,7 +50,7 @@ export class InvenoryHolderComponent implements OnInit{
   deleteHolder(holderId: string): void {
     this.holderService.deleteHolder(holderId).subscribe(
       (response) => {
-        console.log('Patient deleted successfully:', response);
+        this.snackbar.open("Inventory Holder Deleted SuccessFully",'close')
       },
       (error) => {
         console.error('Error deleting patient:', error);

@@ -76,6 +76,21 @@ public class PatientController {
         );
     }
 
+    @GetMapping(path = "/get-by-id/{patientId}")
+    public ResponseEntity<StandardResponse> getPatientById(
+            @PathVariable(value = "patientId") String patientId
+    ){
+        PatientDto patient = patientService.getPatientById(patientId);
+        return new ResponseEntity<>(
+                new StandardResponse(
+                        200,
+                        "Patient",
+                        patient
+                ),
+                HttpStatus.OK
+        );
+    }
+
     @GetMapping("/count")
     public ResponseEntity<StandardResponse> count() {
         long count = patientService.count();

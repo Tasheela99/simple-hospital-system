@@ -1,6 +1,6 @@
 <div class="outer">
   <div class="inner">
-    <div class="image" style="width: 100%; height: 500px">
+    <div class="image" style="width: 100%; height: 450px">
       <h1>Manage Inventory Holders</h1>
     </div>
     <div class="form pt-4">
@@ -14,7 +14,7 @@
                   <input type="text" formControlName="name" matInput placeholder="Ex. pat@example.com">
                 </mat-form-field>
                 <div class="col-6">
-                  <button mat-raised-button class="w-100" color="primary" type="submit">Add Inventory Holder</button>
+                  <button mat-raised-button class="w-100" color="primary" type="submit" [disabled]="holderForm.invalid">Add Inventory Holder</button>
                 </div>
                 <div class="col-6">
                   <button mat-raised-button class="w-100" color="warn" type="reset">Cancel</button>
@@ -25,7 +25,7 @@
 
         </div>
         <hr>
-        <div class="col-12">
+        <div class="col-12 border" style="max-height: 250px; overflow: scroll">
           <table mat-table [dataSource]="holders" class="mat-elevation-z8">
             <ng-container matColumnDef="index">
               <th mat-header-cell *matHeaderCellDef> No. </th>

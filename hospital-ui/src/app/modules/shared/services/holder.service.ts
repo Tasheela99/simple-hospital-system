@@ -29,4 +29,9 @@ export class HolderService {
   count(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/count`);
   }
+
+  getAllMedicalHolderInventoryIds(): Observable<any> {
+    const url = `${this.apiUrl}/get-all-ids`;
+    return this.http.get(url);
+  }
 }

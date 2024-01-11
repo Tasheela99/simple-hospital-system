@@ -5,6 +5,7 @@ import com.hospital.system.dto.MedicineInventoryHolderDto;
 import com.hospital.system.dto.PatientDto;
 import com.hospital.system.dto.requestdto.RequestMedicineInventoryHolderDto;
 import com.hospital.system.dto.responsedto.ResponseMedicineInventoryHolderDto;
+import com.hospital.system.enity.MedicineInventory;
 import com.hospital.system.enity.MedicineInventoryHolder;
 import com.hospital.system.enity.Patient;
 import com.hospital.system.repo.MedicalInventoryHolderRepo;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -88,6 +90,15 @@ public class MedicineInventoryHolderServiceImpl implements MedicineInventoryHold
     @Override
     public long count() {
         return medicalInventoryHolderRepo.count();
+    }
+
+    @Override
+    public List<String> getAllMedicalInventoryHolderIds() {
+        List<MedicineInventoryHolder> medicineInventoryHolderList = medicalInventoryHolderRepo.findAll();
+        List<String> medicineInventoryHolderIds = medicineInventoryHolderList.stream()
+                .map(MedicineInventoryHolder::getId)
+                .collect(Collectors.toList());
+        return medicineInventoryHolderIds;
     }
 
 }

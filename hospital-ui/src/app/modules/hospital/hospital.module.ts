@@ -18,6 +18,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { MedicineComponent } from './components/medicine/medicine.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { PaymentComponent } from './components/payment/payment.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     PatientComponent,
     InvenoryHolderComponent,
     MedicineInventoryComponent,
-    MedicineComponent
+    MedicineComponent,
+    PaymentComponent
   ],
     imports: [
         CommonModule,

@@ -65,4 +65,9 @@ export class InventoryService {
     return this.http.get<any>(`${this.apiUrl}/count`);
   }
 
+  getAllMedicalInventoryIds(): Observable<any> {
+    const url = `${this.apiUrl}/get-all-ids`;
+    return this.http.get(url);
+  }
+
 }

@@ -13,4 +13,6 @@ public interface MedicineInventoryHolderService {
     List<ResponseMedicineInventoryHolderDto> getAllHolders();
 
     long count();
+
+    List<String> getAllMedicalInventoryHolderIds();
 }

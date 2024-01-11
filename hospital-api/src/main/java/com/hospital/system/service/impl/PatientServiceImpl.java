@@ -106,4 +106,10 @@ public class PatientServiceImpl implements PatientService {
     public long count() {
         return patientRepo.count();
     }
+
+    @Override
+    public PatientDto getPatientById(String patientId) {
+        Patient patient = patientRepo.getById(patientId);
+        return patientMapper.toPatientDto(patient);
+    }
 }

@@ -159,7 +159,7 @@ export class DashboardComponent implements OnInit {
     this.chartOptions = {
       series: [
         {
-          name: "My-series",
+          name: "Hospital Data",
           data: [patientCount, doctorCount, inventoryHolderCount, medicineCount]
         }
       ],
@@ -188,7 +188,7 @@ export class DashboardComponent implements OnInit {
         "#FF4560"
       ],
       title: {
-        text: "User Reports"
+        text: "Storage Details"
       },
       xaxis: {
         categories: ["Patients", "Doctors",  "Inventory Holders",  "Medicine"]

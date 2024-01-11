@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -121,5 +122,14 @@ public class MedicineInventoryServiceImpl implements MedicineInventoryService {
         } else {
             throw new RuntimeException("No Medicines Found");
         }
+    }
+
+    @Override
+    public List<String> getAllMedicalInventoryIds() {
+        List<MedicineInventory> medicineInventoryList = medicalInventoryRepo.findAll();
+        List<String> medicineInventoryIds = medicineInventoryList.stream()
+                .map(MedicineInventory::getId)
+                .collect(Collectors.toList());
+        return medicineInventoryIds;
     }
 }

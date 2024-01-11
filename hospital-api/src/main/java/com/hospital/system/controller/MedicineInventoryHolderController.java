@@ -76,4 +76,17 @@ public class MedicineInventoryHolderController {
                 HttpStatus.OK
         );
     }
+
+    @GetMapping(path = "/get-all-ids")
+    public ResponseEntity<StandardResponse> getAllInventoryHolderIds() {
+        List<String> holderIds = medicineInventoryHolderService.getAllMedicalInventoryHolderIds();
+        return new ResponseEntity<>(
+                new StandardResponse(
+                        200,
+                        "All Holder IDs",
+                        holderIds
+                ),
+                HttpStatus.OK
+        );
+    }
 }

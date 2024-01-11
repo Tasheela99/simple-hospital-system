@@ -8,6 +8,7 @@ import {
   MedicineInventoryComponent
 } from "./components/medicine-inventory/medicine-inventory/medicine-inventory.component";
 import {MedicineComponent} from "./components/medicine/medicine.component";
+import {PaymentComponent} from "./components/payment/payment.component";
 
 const routes: Routes = [{ path: '', component: HospitalComponent,children:[
     {path:'doctor',component:AddDoctorComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [{ path: '', component: HospitalComponent,children:[
     {path:'holder',component:InvenoryHolderComponent},
     {path:'inventory',component:MedicineInventoryComponent},
     {path:'medicine',component:MedicineComponent},
+    {path:'payment',component:PaymentComponent},
   ] }];
 
 @NgModule({

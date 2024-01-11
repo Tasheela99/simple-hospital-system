@@ -20,6 +20,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatTableModule} from "@angular/material/table";
 import { ChartComponent } from './chart/chart.component';
 import {NgApexchartsModule} from "ng-apexcharts";
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -46,7 +47,6 @@ import {NgApexchartsModule} from "ng-apexcharts";
         MatInputModule,
         MatTableModule,
         NgApexchartsModule,
-
     ]
 })
 export class AdminModule { }

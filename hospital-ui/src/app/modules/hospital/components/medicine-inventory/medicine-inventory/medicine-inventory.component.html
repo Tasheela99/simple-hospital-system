@@ -1,6 +1,6 @@
 <div class="outer">
   <div class="inner">
-    <div class="image" style="width: 100%; height: 500px">
+    <div class="image" style="width: 100%; height: 450px">
       <h1>Manage Inventory</h1>
     </div>
     <div class="form py-2">
@@ -10,23 +10,25 @@
             <form class="example-form" [formGroup]="inventoryForm" (ngSubmit)="createInventory()">
               <div class="example-container d-flex">
                 <mat-form-field>
-                  <mat-label>Inventory Holder Id</mat-label>
-                  <input type="text" formControlName="holderId" matInput placeholder="Ex. pat@example.com">
+                  <mat-label>Holder Id</mat-label>
+                  <mat-select formControlName="holderId" placeholder="Select Holder Id">
+                    <mat-option *ngFor="let holderId of holders" [value]="holderId">{{ holderId }}</mat-option>
+                  </mat-select>
                 </mat-form-field>
                 <div class="px-1"></div>
                 <mat-form-field>
                   <mat-label>Medicine Name</mat-label>
-                  <input type="text" formControlName="name" matInput placeholder="Ex. pat@example.com">
+                  <input type="text" formControlName="name" matInput placeholder="Name">
                 </mat-form-field>
               </div>
 
               <mat-form-field class="example-full-width">
                 <mat-label>Quantity</mat-label>
-                <input type="number" formControlName="qty" matInput placeholder="Ex. pat@example.com">
+                <input type="number" formControlName="qty" matInput placeholder="Quantity">
               </mat-form-field>
               <mat-form-field class="example-full-width">
                 <mat-label>Unit Price</mat-label>
-                <input type="number" formControlName="unitPrice" matInput placeholder="Ex. pat@example.com">
+                <input type="number" formControlName="unitPrice" matInput placeholder="Unit Price">
               </mat-form-field>
 
               <mat-form-field class="example-full-width">
@@ -41,18 +43,14 @@
                 <mat-datepicker #expiredDate></mat-datepicker>
               </mat-form-field>
 
-              <button mat-raised-button class="w-100" color="primary" type="submit">Add To Inventory</button>
+              <button mat-raised-button class="w-100" color="primary" type="submit" [disabled]="inventoryForm.invalid">Add To Inventory</button>
               <p class="p-1"></p>
               <button mat-raised-button class="w-100" color="warn" type="reset">Cancel</button>
             </form>
           </div>
-          <div class="col-8">
+          <div class="col-8" style="max-height: 400px; overflow: scroll">
             <table mat-table [dataSource]="inventories" class="mat-elevation-z8">
 
-              <!--- Note that these columns can be defined in any order.
-                    The actual rendered columns are set as a property on the row definition" -->
-
-              <!-- Position Column -->
               <ng-container matColumnDef="index">
                 <th mat-header-cell *matHeaderCellDef> No. </th>
                 <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
@@ -81,11 +79,11 @@
               </ng-container>
               <ng-container matColumnDef="manufacture">
                 <th mat-header-cell *matHeaderCellDef> Manufacture Date </th>
-                <td mat-cell *matCellDef="let element"> {{element.manufacturedDate}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.manufacturedDate | date:'yyyy-MM-dd'}} </td>
               </ng-container>
               <ng-container matColumnDef="expire">
                 <th mat-header-cell *matHeaderCellDef> Expire Date </th>
-                <td mat-cell *matCellDef="let element"> {{element.expiredDate}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.expiredDate | date:'yyyy-MM-dd'}} </td>
               </ng-container>
 
               <ng-container matColumnDef="actions">

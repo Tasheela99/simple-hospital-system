@@ -45,4 +45,10 @@ export class PatientService {
   count(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/count`);
   }
+
+  getPatientDetails(patientId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/get-by-id`, { params: { patientId: patientId } });
+  }
+
+
 }
